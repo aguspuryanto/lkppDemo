@@ -1,0 +1,23 @@
+{
+  "name": "klikkarir",
+  "version": "1.0.0",
+  "description": "situs lowongan kerja",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lowongan",
+    "kerja"
+  ],
+  "author": "Agus Puryanto",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-uglify": "^3.0.0"
+  }
+}
