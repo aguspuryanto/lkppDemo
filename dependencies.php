@@ -6,7 +6,7 @@ $container = $app->getContainer();
 // Register component on container
 $container['view'] = function ($container) {
 	// $req = $app->request;
-	$base_url = "http://localhost/klikkarir";
+	$base_url = "http://localhost/lkppDemo";
 
     return new \Slim\Views\PhpRenderer('templates/', [
         'baseUrl' => $base_url,

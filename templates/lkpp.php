@@ -66,6 +66,10 @@
           <tbody>
             <?php
             foreach ($ecatalog as $key) {
+
+              $produkId = explode("/",$key['lihatProduk']);
+              $produkId = end($produkId);
+
               echo "<tr>
               <th scope='row'>".$key['jenisProduk']."</th>
               <td><img src='".$key['imageProduk']."' class='img-thumbnail'></td>
@@ -74,7 +78,7 @@
                   <li>".$key['infoProduk']."</li>
                   <li>".$key['infoProduk1']."</li>
                 </ul>
-                <p>".$key['noProduk']."</p>
+                <p><a href='".$baseUrl."/lkpp/product/".$produkId."'>".$key['noProduk']."</a></p>
                 <h4>".$key['namaProduk']."</h4>
               </td>
               <td>

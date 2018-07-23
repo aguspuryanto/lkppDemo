@@ -21,15 +21,18 @@ $app = new \Slim\App($config);
 
 include_once ('dependencies.php');
  
-$app->get('/', function ($request, $response, $args) {
+$app->get('/', function ($request, $response, $args) use($app) {
     // $response->write("Hello World");
     // return $response;
-    return $this->view->render($response, 'index.php');
+    // return $this->view->render($response, 'index.php');
+    // return $response->withRedirect('http://localhost/demolkpp/lkpp'); 
+    return $response->withStatus(302)->withHeader('Location', 'http://localhost/lkppDemo/demolkpp');
 });
 
 $app->get('/lkppmulti[/]', function ($request, $response, $args) {
 
-	$fileName = "list_produk_77.html";
+	$dirName = "cache";
+    $fileName = $dirName . "/list_produk_77.html";
     $url = "https://e-katalog.lkpp.go.id/backend/katalog/list_produk/77";
 
     $data = file_get_contents($fileName);
@@ -46,7 +49,7 @@ $app->get('/lkppmulti[/]', function ($request, $response, $args) {
 		if($i>10){
 
 			echo "Page: ".$i.";";
-			$fileName = "list_produk_77_".$i.".html";
+			$fileName = $dirName . "/llist_produk_77_".$i.".html";
     		$url .= "/?isSubmitted=1&page=".$i;
 
 		    if(!file_exists($fileName)){
@@ -83,17 +86,53 @@ $app->get('/demolkpp[/{id}]', function ($request, $response, $args) {
 
 });
 
+$app->get('/lkpp/product[/{id}]', function ($request, $response, $args) {
+	// echo "https://e-katalog.lkpp.go.id/backend/katalog/lihat_produk/".$args['id'];
+	// $dirName = dirname(__FILE__) . "/cache";
+
+	$fileName = "lihat_produk_".$args['id'].".html";
+    $url = "https://e-katalog.lkpp.go.id/backend/katalog/lihat_produk/".$args['id'];
+
+    if(!file_exists($fileName)){
+
+	    $ch = curl_init();
+	    curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1000);
+		$data = curl_exec($ch);
+		curl_close($ch);
+
+	    @file_put_contents($fileName, $data, FILE_APPEND);
+
+	    $data = file_get_contents($fileName);
+	} else {
+
+		$data = file_get_contents($fileName);
+	}
+
+    // return $data;
+
+    //now parsing it into html
+	$html = str_get_html($data);
+	foreach($html->find('table.tableInfo') as $html) {
+		echo $html->outertext;
+	}
+
+	// echo $result;
+});
+
 $app->get('/lkpp[/{id}]', function ($request, $response, $args) {
 
 	// echo var_dump($args['id']); die();
     /*
      * https://e-katalog.lkpp.go.id/backend/katalog/list_produk/77
      */
-    $fileName = "list_produk_77.html";
+    $dirName = "cache";
+    $fileName = $dirName . "/list_produk_77.html";
     $url = "https://e-katalog.lkpp.go.id/backend/katalog/list_produk/77";
 
     if($args['id']>1){
-    	$fileName = "list_produk_77_".$args['id'].".html";
+    	$fileName = $dirName . "/list_produk_77_".$args['id'].".html";
     	$url .= "/?isSubmitted=1&page=".$args['id'];
 	}
     // echo $url;
@@ -135,6 +174,7 @@ $app->get('/lkpp[/{id}]', function ($request, $response, $args) {
 			$item['imageProduk'] = $t->find("div.imageProduk img",0)->src;
 			$item['infoProduk'] = $t->find("div.infoProduk ol li",0)->plaintext;
 			$item['infoProduk1'] = $t->find("div.infoProduk ol li",1)->plaintext;
+			$item['lihatProduk'] = $t->find("div.noProduk a",0)->href;
 			$item['noProduk'] = $t->find("div.noProduk a",0)->plaintext;
 			$item['namaManufaktur'] = $t->find("div.infoProduk div.namaProdukWrapper span.namaManufaktur",0)->plaintext;
 			$item['namaProduk'] = $t->find("div.infoProduk div.namaProdukWrapper span.namaProduk",0)->plaintext;
@@ -161,10 +201,10 @@ $app->get('/lkpp[/{id}]', function ($request, $response, $args) {
 
 			// 16
 			try {
-				$statement = $this->db->prepare("INSERT INTO `ecatalog` (pid, jenisProduk, imageProduk, infoProduk, infoProduk1, noProduk, namaManufaktur, namaProduk, hargaProduk, updatedDate, updatedDate1, jumlahStok, penyediaUrl, penyedia, penyedia1) VALUES(:pid, :jenisProduk, :imageProduk, :infoProduk, :infoProduk1, :noProduk, :namaManufaktur, :namaProduk, :hargaProduk, :updatedDate, :updatedDate1, :jumlahStok, :penyediaUrl, :penyedia, :penyedia1)");
+				$statement = $this->db->prepare("INSERT IGNORE INTO `ecatalog` (pid, jenisProduk, imageProduk, infoProduk, infoProduk1, noProduk, lihatProduk, namaManufaktur, namaProduk, hargaProduk, updatedDate, updatedDate1, jumlahStok, penyediaUrl, penyedia, penyedia1) VALUES(:pid, :jenisProduk, :imageProduk, :infoProduk, :infoProduk1, :noProduk, :lihatProduk, :namaManufaktur, :namaProduk, :hargaProduk, :updatedDate, :updatedDate1, :jumlahStok, :penyediaUrl, :penyedia, :penyedia1) ON DUPLICATE KEY UPDATE lihatProduk=:lihatProduk");
 
 				// echo var_dump($statement)."<br>";
-		    	$statement->execute(array(':pid'=>'77', ':jenisProduk'=>$item['jenisProduk'], ':imageProduk'=>$item['imageProduk'], ':infoProduk'=>$item['infoProduk'], ':infoProduk1'=>$item['infoProduk1'], ':noProduk'=>$item['noProduk'], ':namaManufaktur'=>$item['namaManufaktur'], ':namaProduk'=>$item['namaProduk'], ':hargaProduk'=>$hargaProduk, ':updatedDate'=>$tglTayang, ':updatedDate1'=>$tglUpdate, ':jumlahStok'=>$jumlahStok, ':penyediaUrl'=>$item['penyediaUrl'], ':penyedia'=>trim($penyedia), ':penyedia1'=>$validTrue));
+		    	$statement->execute(array(':pid'=>'77', ':jenisProduk'=>$item['jenisProduk'], ':imageProduk'=>$item['imageProduk'], ':infoProduk'=>$item['infoProduk'], ':infoProduk1'=>$item['infoProduk1'], ':noProduk'=>$item['noProduk'], ':lihatProduk'=>$item['lihatProduk'], ':namaManufaktur'=>$item['namaManufaktur'], ':namaProduk'=>$item['namaProduk'], ':hargaProduk'=>$hargaProduk, ':updatedDate'=>$tglTayang, ':updatedDate1'=>$tglUpdate, ':jumlahStok'=>$jumlahStok, ':penyediaUrl'=>$item['penyediaUrl'], ':penyedia'=>trim($penyedia), ':penyedia1'=>$validTrue));
 
 		    } catch(PDOException $e) {
 		        echo $e->getMessage();
