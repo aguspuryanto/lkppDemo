@@ -1,0 +1,1839 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+    <link rel="icon" type="image/x-icon" href="https://e-katalog.lkpp.go.id/favicon.ico"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="description"
+          content="Pengadaan Barang dan Jasa Pemerintah melalui sistem eCatalogue dan ePurchasing LKPP">
+    <meta name="keywords"
+          content="ecatalogue, epurchasing, lkpp, pemerintah, indonesia, ekatalog, procurement, paket, komoditas">
+    <meta name="author" content="LKPP">
+    <meta name="version" content="4.3.0">
+
+    <title>e-Catalogue - LKPP</title>
+
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/jqueryui/jquery-ui-1.11.1.custom.min.css"/>
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/js/elrte/css/elrte.min.css"/>
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/js/elfinder/css/elfinder.min.css"/>
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/uploadifive/uploadifive.css"/>
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/fancybox/jquery.fancybox.css"/>
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/timepicker/timepicker.css"/>
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/treeview/jquery.treeview.css"/>
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/tagmanager/tagmanager.css"/>
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/superfish/superfish.css"/>
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/superfish/superfish-vertical.css"/>
+
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/datatables/jquery.dataTables.css"/>
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/datatables/dataTables.fixedColumns.css"/>
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/accessiblemegamenu/megamenu.css"/>
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/font-awesome/css/font-awesome.min.css"/>
+
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/select2/select2.css"/>
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/chat.css"/>
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/responsive.css"/>
+
+            <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/barrating/fontawesome-stars.css"/>
+        
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/backend.css?v=4.3.0&nc=20180724"/>
+    <link type="text/css" rel="stylesheet"
+          href="https://e-katalog.lkpp.go.id/css/backend_override.css?v=4.3.0&nc=20180724"/>
+    <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/backend_cms.css?v=4.3.0&nc=20180724"/>
+    <link type="text/css" rel="stylesheet"
+          href="https://e-katalog.lkpp.go.id/css/backend_komoditas.css?v=4.3.0&nc=20180724"/>
+            <link type="text/css" rel="stylesheet"
+              href="https://e-katalog.lkpp.go.id/css/themes/backend/blue/theme.css?v=4.3.0&nc=20180724"/>
+            <link type="text/css" rel="stylesheet" href="https://e-katalog.lkpp.go.id/css/icons.css?v=4.3.0&nc=20180724"/>
+
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/jquery-ui-1.11.1.min.js"></script>
+
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/validate/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/jquery.maskedinput.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/uploadifive/jquery.uploadifive.min.js"></script>
+
+    <script type="text/javascript"
+            src="https://e-katalog.lkpp.go.id/js/jquery/nestedsortable/jquery.ui.nestedSortable.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/mousewheel/jquery.mousewheel.pack.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/treeview/jquery.treeview.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/timepicker/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/tagmanager/tagmanager.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/equalize/equalize.min.js"></script>
+    <script type="text/javascript"
+            src="https://e-katalog.lkpp.go.id/js/jquery/formatcurrency/jquery.formatCurrency-1.4.0.min.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/scrollto/jquery.scrollTo.min.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/tablehover/jquery.tablehover.min.js"></script>
+
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/superfish/hoverIntent.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/superfish/superfish.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/superfish/supersubs.js"></script>
+
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/datatables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"
+            src="https://e-katalog.lkpp.go.id/js/jquery/datatables/dataTables.fixedColumns.min.js"></script>
+
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/elrte/js/elrte.min.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/elrte/js/i18n/elrte.en.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/elfinder/js/elfinder.min.js"></script>
+
+    <script type="text/javascript"
+            src="https://e-katalog.lkpp.go.id/js/jquery/easylistsplitter/jquery.easyListSplitter.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/highlight/jquery.highlight.js"></script>
+
+    <script type="text/javascript"
+            src="https://e-katalog.lkpp.go.id/js/jquery/accessiblemegamenu/jquery-accessibleMegaMenu.js"></script>
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/accessiblemegamenu/main.js"></script>
+
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/select2/select2.full.min.js"></script>
+
+            <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/jquery/barrating/jquery.barrating.min.js"></script>
+        
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://e-katalog.lkpp.go.id/js/html5shiv.js"></script>
+    <script src="https://e-katalog.lkpp.go.id/js/respond.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/global.js?v=4.3.0&nc=20180724"></script>
+	<script type="text/javascript" src="https://e-katalog.lkpp.go.id/js/adrum-config.js"></script>
+</head>
+
+<body>
+<div id="contentCoreLoading" style="display:none;">&nbsp;</div>
+<div class="pageWrap">
+    <div id="shoppingCartOrder" style="display:none;">
+        <a href="https://e-katalog.lkpp.go.id/backend/katalog/lihat_keranjang" class="triggerOpenClose">
+            <div class="viewAsTable">
+                <div class=" col colNormal">
+                    <span
+                        class="fa fa-shopping-cart fa-fw"></span> Keranjang Pembelian                </div>
+                <div class="col">
+                    &nbsp;<span class="totalProdukWrapper">(<span class="totalProduk">0</span>)</span>
+                    <span class="smallLoadingBar" style="display:none;"></span>
+                </div>
+            </div>
+        </a>
+        <div class="cartTargetBody">
+                    </div>
+    </div>
+    <script type="text/javascript">
+
+        var shoppingCartOrder = $("#shoppingCartOrder");
+        var shoppingCartTrigger = shoppingCartOrder.find("> a.triggerOpenClose");
+        var shoppingCartHeaderData = ['penyediaId', 'komoditasId', 'hargaKursId', 'provinsiId', 'kabupatenId'];
+        var cartTargetBody = shoppingCartOrder.find(".cartTargetBody");
+
+        $.fn.addToCartSetup = function () {
+            shoppingCartOrder.find(".button").button();
+        }
+
+        $.fn.addToCartExecute = function (options) {
+            var defaults = {
+                afterAdd: function () {
+                }
+                , beforeAdd: function () {
+                }
+            }
+            var options = $.extend(defaults, options);
+
+            return this.each(function () {
+                var trig = $(this);
+                var loading = shoppingCartTrigger.find(".smallLoadingBar");
+                var totalProdukWrapper = shoppingCartTrigger.find(".totalProdukWrapper");
+
+
+                options.beforeAdd();
+                //trig.button("disable");
+                shoppingCartOrder.show();
+                totalProdukWrapper.hide();
+                loading.show();
+
+
+                var getData = {};
+                var requestData = shoppingCartHeaderData.concat(["hargaUtama", "hargaOngkir"]);
+
+                $.each(requestData, function (index, value) {
+                    getData[value] = options.item[value];
+                });
+                $.get(
+                    trig.attr("href")
+                    , getData
+                    , function (data) {
+
+                        loading.hide();
+                        totalProdukWrapper.show();
+
+                        var data = myCheckDataJson(data);
+                        if (!data) {
+                            return false;
+                        }
+                        shoppingCartTrigger.find(".totalProduk").html(data.totalProduk);
+                        shoppingCartTrigger.blinkEffect({
+                            blinkClass: "triggerOpenCloseBlinker"
+                            , interval: 200
+                            , times: 3
+                        });
+                        cartTargetBody.append('<input type="hidden" name="produkId[]" value="' + data.item.produkId + '" />');
+                        trig.addToCartCheckAlreadySelected(options);
+
+                        options.afterAdd();
+
+                    }
+                );
+            });
+
+        }
+        $.fn.addToCartTrigger = function (options) {
+            var defaults = {}
+            var options = $.extend(defaults, options);
+
+            return this.button().each(function () {
+                $(this).click(function (e) {
+                    e.preventDefault();
+                    $(this).addToCartExecute(options);
+                });
+                $(this).addToCartCheckAlreadySelected(options);
+            });
+        }
+
+        $.fn.addToCartCheckAlreadySelected = function (options) {
+
+            var defaults = {
+                allowDuplicate: false
+            }
+            var options = $.extend(defaults, options);
+
+            if (options.allowDuplicate) {
+                return this;
+            }
+
+            var targetButton = $("body a.beli.ui-button[produkId=" + $(this).attr("produkId") + "]");
+
+            return this.each(function () {
+
+                var found = cartTargetBody.find("input[name^=produkId][value='" + $(this).attr("produkId") + "']").length > 0;
+                if (found) {
+                    targetButton.button("disable");
+                } else {
+                    targetButton.button("enable");
+                }
+            });
+        }
+
+        $().addToCartSetup();
+
+        //$(".defaultHomepage").click();
+
+    </script>
+    <div
+        id="placeHolderSelectedProductProcess" style="display:none;">
+        <div class="header ">
+            <div class="title"><a href="#" id="triggerOpenClosePerbandingan"><span
+                        class="fa fa-caret-down fa-caret-up fa-lg fa-fw"></span> Perbandingan (<span
+                        class="total">0</span>)</a>
+            </div>
+            <div class="deleteAll"><a href="https://e-katalog.lkpp.go.id/backend/katalog/perbandingan_delete"><span
+                        class="fa fa-times fa-lg fa-fw"></span></a><span class="loading fa fa-spin fa-spinner fa-fw"
+                                                                         style="display:none;"></span></div>
+        </div>
+        <div class="content" style="display:none;">
+            <form action="https://e-katalog.lkpp.go.id/backend/katalog/perbandingan" accept-charset="utf-8" name="selectedProduct" method="post"><div style="display:none">
+<input type="hidden" name="isSubmitted" value="1" />
+</div>            <ul>
+                            </ul>
+            <div class="buttons">
+                <input type="submit" name="btnSubmit" value="Tampilkan Tabel Perbandingan" class="btnDefault button"  />            </div>
+            </form>        </div>
+    </div>
+    <div id="tplSelectProductItem" style="display:none;">
+        <ul>
+            <li>
+                
+<input type="hidden" name="produkId[]" value="" />
+
+<input type="hidden" name="provinsiId[]" value="" />
+
+<input type="hidden" name="kabupatenId[]" value="" />
+                <div>
+                    <div class="produkInfo"></div>
+                </div>
+                <div class="delete"><a href="#" class=""><span class="fa fa-times fa-lg fa-fw"></span></a><span
+                        class="loading fa fa-spin fa-spinner fa-fw" style="display:none;"></span></div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var tplSelectProductItem = $("#tplSelectProductItem ul li");
+        var tplSelectProductBox = $("#tplSelectProductBox");
+        var placeHolderSelectedProduct = $("#placeHolderSelectedProductProcess");
+
+        $.fn.checkAutoHeightPlaceHolder = function () {
+            var ul = placeHolderSelectedProduct.find("ul");
+
+            var hLi = 0;
+            ul.find("> li").each(function () {
+                hLi += $(this).height();
+            });
+
+            if (hLi > 300) {
+                ul.height(300);
+                ul.css({
+                    "overflow-y": "auto"
+                });
+            } else {
+                ul.css({
+                    "height": "auto"
+                });
+            }
+
+        }
+        $.fn.initPlaceHolder = function (options) {
+
+            placeHolderSelectedProduct.find(".button").button();
+            placeHolderSelectedProduct.find(".header").button();
+            placeHolderSelectedProduct.find(".header .title a").click(function (e) {
+                e.preventDefault();
+                $(this).find("span.fa-caret-down").toggleClass("fa-caret-up");
+                placeHolderSelectedProduct.find(".content").toggle();
+                $().checkAutoHeightPlaceHolder();
+            });
+            placeHolderSelectedProduct.find(".header .deleteAll a").unbind("click").click(function (e) {
+                e.preventDefault();
+
+                var trigger = $(this);
+                var loading = trigger.siblings(".loading");
+
+                trigger.hide();
+                loading.show();
+
+                $.get(
+                    trigger.attr("href")
+                    , function (data) {
+
+                        loading.hide();
+                        trigger.show();
+
+                        var data = myCheckDataJson(data);
+                        if (data) {
+                            placeHolderSelectedProduct.find("li").remove();
+                            $().checkPlaceHolder();
+                        }
+                    }
+                );
+
+            });
+
+        }
+        $.fn.checkPlaceHolder = function (produkId) {
+
+            var placeHolderSelectedProduct = $("#placeHolderSelectedProductProcess");
+            if (placeHolderSelectedProduct.find("ul > li").length == 0) {
+                placeHolderSelectedProduct.hide();
+            } else {
+                placeHolderSelectedProduct.show();
+            }
+
+        }
+        $.fn.checkProductSelected = function (options) {
+
+            var defaults = {
+                "objCheckProductSelected": {}
+            }
+            var options = $.extend(defaults, options);
+
+            var li = placeHolderSelectedProduct.find("ul > li[produkId=" + options.produkId + "]");
+            var allLi = placeHolderSelectedProduct.find("ul > li");
+
+            var btns = placeHolderSelectedProduct.find(".buttons");
+
+            if (isNaN(parseInt(options.objCheckProductSelected.length))) {
+                var tr = $(".pagePanel .bodyContent *[produkId=" + options.produkId + "]");
+            } else {
+                var tr = options.objCheckProductSelected.filter("[produkId=" + options.produkId + "]");
+            }
+            var btnSelect = tr.find(".btnSelect .select");
+
+            placeHolderSelectedProduct.find(".title .total").html(allLi.length);
+
+            if (allLi.length == 0) {
+                btns.hide();
+            } else {
+                btns.show();
+            }
+
+            if (li.length == 1) {
+                btnSelect.button("disable");
+            } else {
+                btnSelect.button("enable");
+            }
+
+            $().checkAutoHeightPlaceHolder();
+
+        }
+
+        $.fn.deleteSelectedItemTrigger = function (options) {
+
+            var defaults = {
+                "objCheckProductSelected": {}
+            }
+            var options = $.extend(defaults, options);
+            this.each(function () {
+                var li = $(this);
+                var produkId = li.attr("produkId");
+
+                li.find(".delete a").click(function (e) {
+                    e.preventDefault();
+
+                    var trigger = $(this);
+                    var loading = trigger.siblings(".loading");
+
+                    trigger.hide();
+                    loading.show();
+
+                    $.get(
+                        trigger.attr("href")
+                        , function (data) {
+
+                            loading.hide();
+                            trigger.show();
+
+                            var data = myCheckDataJson(data);
+                            if (data) {
+                                li.remove();
+                                $().checkProductSelected({
+                                    "objCheckProductSelected": options.objCheckProductSelected
+                                    , produkId: produkId
+                                });
+
+                                $().checkPlaceHolder();
+                            }
+                        }
+                    );
+
+
+                });
+            });
+
+        }
+
+        $.fn.selectProductTrigger = function (options) {
+
+            var defaults = {
+                "objCheckProductSelected": {}
+            }
+            var options = $.extend(defaults, options);
+
+            return this.each(function () {
+
+                var tr = $(this);
+                var produkId = tr.attr("produkId");
+                var provinsiId = tr.attr("provinsiId");
+                var kabupatenId = tr.attr("kabupatenId");
+                var produkKategoriId = tr.attr("produkKategoriId");
+                var produkInfo = tr.find(".itemWrapper").parent().clone();
+
+                produkInfo.find(".secondaryWrap").remove();
+
+                tr.find(".btnSelect .select").click(function (e) {
+                    e.preventDefault();
+
+                    var trigger = $(this);
+                    var loading = trigger.find(".fa");
+
+                    trigger.button("disable");
+                    loading.addClass("fa-spinner fa-spin");
+
+                    $.post(
+                        "https://e-katalog.lkpp.go.id/backend/katalog/perbandingan_tambah/" + produkId
+                        , {
+                            "provinsiId": provinsiId
+                            , "kabupatenId": kabupatenId
+                            , "produkKategoriId": produkKategoriId
+                            , "produkInfo": produkInfo.html()
+                        }
+                        , function (data) {
+
+                            var data = myCheckDataJson(data);
+                            loading.removeClass("fa-spinner fa-spin");
+                            if (data) {
+
+                                var boxLi = tplSelectProductItem.clone();
+
+                                boxLi.attr("produkId", data.item.produkId);
+                                boxLi.find(".produkInfo").html(data.item.produkInfo);
+                                boxLi.find("input[name^=produkId]").val(data.item.produkId);
+                                boxLi.find("input[name^=provinsiId]").val(data.item.provinsiId);
+                                boxLi.find("input[name^=kabupatenId]").val(data.item.kabupatenId);
+                                boxLi.find("input[name^=produkKategoriId]").val(data.item.produkKategoriId);
+
+                                boxLi.find(".delete a").attr("href", "https://e-katalog.lkpp.go.id/backend/katalog/perbandingan_delete/" + data.item.id)
+
+                                boxLi.deleteSelectedItemTrigger({
+                                    "objCheckProductSelected": options.objCheckProductSelected
+                                });
+                                boxLi.appendTo(placeHolderSelectedProduct.find("ul"));
+
+                                $().checkPlaceHolder();
+
+                                $().checkProductSelected({
+                                    "objCheckProductSelected": options.objCheckProductSelected
+                                    , produkId: produkId
+                                });
+
+                                placeHolderSelectedProduct.find(".header").blinkEffect({
+                                    blinkClass: "blinker"
+                                    , interval: 200
+                                    , times: 3
+                                });
+
+
+                            } else {
+                                trigger.button("enable");
+                            }
+
+                        }
+                    );
+
+                });
+
+            });
+        }
+        if (placeHolderSelectedProduct.length == 1) {
+            $().initPlaceHolder();
+            placeHolderSelectedProduct.find("li").deleteSelectedItemTrigger();
+        }
+        $(document).unbind("click").click(function (e) {
+
+            var trigPerbandingan = placeHolderSelectedProduct.find("> .header");
+            var contentPerbandingan = placeHolderSelectedProduct.find("> .content");
+
+            if ((!contentPerbandingan.is(e.target) && contentPerbandingan.has(e.target).length === 0) &&
+                (!trigPerbandingan.is(e.target) && trigPerbandingan.has(e.target).length === 0)
+            ) {
+                contentPerbandingan.hide();
+            }
+        });
+    </script>
+    <div class="backgroundGradientStyle01 headerWrapper">
+        <div class="viewAsTable">
+            <div class="col colNormal">
+                <nav class="megamenu " style="display:none;">
+                    <ol>
+                        <li class="webLogo hidden-lg-down">
+                            <a href="https://e-katalog.lkpp.go.id/"></a>
+                        </li>
+                        <li class="informasi">
+                            <h2 class="fontSize1em"><a
+                                    href="javascript: void(0);">Informasi</a></h2>
+                            <div class="cols-1">
+                                <ol>
+                                    <li class="accessible-megamenu-panel-group">
+                                        <ol>
+                                            <li class="whiteSpaceNoWrap">
+                                                <a href="https://e-katalog.lkpp.go.id/backend/konten_statis/view/7"
+                                                   class="defaultHomepage "><span
+                                                        class="fa fa-check-square-o fa-lg fa-fw"></span> Syarat &amp; Ketentuan                                                </a>
+                                            </li>
+                                            <li class="whiteSpaceNoWrap">
+                                                <a href="https://e-katalog.lkpp.go.id/backend/konten_statis/view/5"
+                                                   class=""><span
+                                                        class="fa fa-book fa-lg fa-fw"></span> Petunjuk Penggunaan                                                </a>
+                                            </li>
+                                            <li class="whiteSpaceNoWrap">
+                                                <a href="https://e-katalog.lkpp.go.id/backend/konten_statis/view/8"
+                                                   class=""><span
+                                                        class="fa fa-download fa-lg fa-fw"></span> Unduh                                                </a>
+                                            </li>
+                                            <li class="whiteSpaceNoWrap">
+                                                <a href="https://e-katalog.lkpp.go.id/backend/konten_statis/view/6"
+                                                   class=""><span
+                                                        class="fa fa-tty fa-lg fa-fw"></span> Hubungi Kami                                                </a>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </div>
+                        </li>
+                                                    <li class="menuKomoditas">
+                                <h2 class="fontSize1em"><a
+                                        href="javascript: void(0);">Katalog</a>
+                                </h2>
+                                <div class="cols-1">
+                                    <ol>
+                                        
+				<li class="accessible-megamenu-panel-group">
+				<h2 class="fontSize1em">NASIONAL</h2>
+					<ol>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14418529826842.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/41">
+								Alat Berat (60)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14685733917282.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/25">
+								Alat dan Mesin Perikanan (34)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14418531661222.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/14">
+								Alat dan Mesin Pertanian (770)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440156476663.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/29">
+								Alat Kebersihan (13)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440157999205.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/24">
+								Alat Kesehatan (16392)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/64">
+								Alat Laboratorium (13)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440153477986.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/34">
+								Alat Pemindai (0)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440153730397.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/38">
+								Bahan Kimia (3497)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/73">
+								Benih (140)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440153837922.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/31">
+								Bibit Sapi Impor dan Bibit Kerbau Impor (0)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440153185617.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/35">
+								Buku Pelajaran Sekolah (0)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14685734149591.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/46">
+								Dekorasi Bunga (16)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/76">
+								e-Ticketing (4)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440284856881.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/15">
+								Hot-Mix (272)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/15159776779064.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/75">
+								Internet Service Provider 2018 (8474)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/1444015844134.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/32">
+								Irigasi tetes (1)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440158657218.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/36">
+								Jasa Operator Bus (6)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14685734606058.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/49">
+								Jasa Pengelolaan Gedung (14)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14685734781735.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/48">
+								Jasa Pengiriman (0)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14685734923119.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/44">
+								Jasa Periklanan (0)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14685735046075.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/53">
+								Kapal Perikanan  (0)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14291059003049.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/8">
+								Kartu (12)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14291058726147.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/11">
+								Kendaraan Bermotor (3967)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440157311719.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/23">
+								Kendaraan Bermotor Off The Road (115)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14685735242064.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/50">
+								Komunikasi & Informatika (97)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14685735420288.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/54">
+								Layanan Keuangan Digital (9)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14685735568928.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/45">
+								Material Konstruksi (1)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440155633162.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/40">
+								Meubelair Sekolah (41)
+							</a>
+						</li>
+						
+					</ol>
+				</li>
+				
+				<li class="accessible-megamenu-panel-group">
+				<br>
+					<ol>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14442804635142.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/28">
+								Obat / Hormon Tanaman dan Hewan (28)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/71">
+								Obat 2017 (0)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/74">
+								Obat 2018 (1102)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/63">
+								Obat Kontrasepsi BKKBN 2016 (1)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/77">
+								Online Shop - Perangkat Komputer (56137)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/78">
+								Online Shop - Perkakas (12357)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440155804211.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/26">
+								Pakan (3)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440152886892.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/27">
+								PE Sheet (30)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14685735706044.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/51">
+								Pekerjaan Jalan (474)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440159506476.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/10">
+								Penerangan Jalan Umum (100)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14685735866818.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/43">
+								Peralatan dan Bahan Pemadam Kebakaran (5)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440155930053.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/33">
+								Peralatan Kantor (163)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/62">
+								Peralatan Lalu Lintas (1)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/72">
+								Peralatan Olahraga (8)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/70">
+								Peralatan Pendidikan (26)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14685736297952.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/52">
+								Peralatan SAR (0)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440153601007.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/13">
+								PP Sheet (9)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440157597144.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/16">
+								Ready-Mix (0)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/1444015813822.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/17">
+								Recycling Road (19)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/69">
+								Segel dan/atau Hologram Dengan Security Printing (5)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14302832901963.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/22">
+								Semen Beku (0)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440159354742.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/21">
+								Sewa (61)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/67">
+								Surat Suara Pemilihan Gubernur/Bupati/Walikota (2)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440152444469.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/30">
+								Tanda Nomor Kendaraan Bermotor (6)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/14440152251134.png" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/37">
+								Tata Lingkungan (556)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/68">
+								Tinta Sidik Jari (0)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/39">
+								Tool Kit Uji Cepat Pangan  (5)
+							</a>
+						</li>
+						
+					</ol>
+				</li>
+				
+			    <li class="accessible-megamenu-panel-group">
+			    <h2 class="fontSize1em">LOKAL</h2>
+			    <ol>
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/61">
+								Perkakas Kerja dan Alat Kebersihan (0)
+							</a>
+						</li>
+						
+						<li class="whiteSpaceNoWrap">
+							<img src="https://e-katalog.lkpp.go.id/thumb/50x50/files/upload/komoditas_ikon/" width="16px" align="left">
+							<a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/60">
+								Seragam Kerja dan Perlengkapannya (0)
+							</a>
+						</li>
+						
+					</ol>
+				</li>
+				
+				                                    </ol>
+                                </div>
+                            </li>
+                                                                                                                        </ol>
+                </nav>
+                <div id="tplTambahMenu1532413357" style="display:none;"></div>
+            </div>
+            <div class="col userInfo">
+                                    <a href="https://e-katalog.lkpp.go.id/login" class="logout"><span
+                            class="fa fa-lg fa-fw fa-sign-in"></span> Login</a>
+                                </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        var megamenu = $(".megamenu").show();
+        megamenu.accessibleMegaMenu();
+
+        var tplTambahMenu1532413357 = megamenu.siblings("#tplTambahMenu1532413357");
+        tambahMenuResolution1532413357 = $(window).getBestWidthHeight({
+            wPercentage: 0.9
+            , hPercentage: 0.9
+        });
+
+        megamenu.find(".tambahMenu").openWindowDialogUrl({
+            target: tplTambahMenu1532413357            , targetLoad: tplTambahMenu1532413357            , url: function () {
+                return "https://e-katalog.lkpp.go.id/backend/menu/tipe_menu";
+            }
+            , title: "Pilih Tipe Menu"
+            , modal: true
+            , width: 500
+            , height: tambahMenuResolution1532413357.height
+            , loadingText: function () {
+                return "Loading tipe menu";
+            }
+            , success: function (winDialog, data) {
+
+            }
+        });
+
+        // these are (ruh-roh) globals. You could wrap in an
+        // immediately-Invoked Function Expression (IIFE) if you wanted to...
+        var currentTallest = 0,
+            currentRowStart = 0,
+            rowDivs = new Array();
+
+        function setConformingHeight(el, newHeight) {
+            // set the height to something new, but remember the original height in case things change
+            el.data("originalHeight", (el.data("originalHeight") == undefined) ? (el.height()) : (el.data("originalHeight")));
+            el.height(newHeight);
+        }
+
+        function getOriginalHeight(el) {
+            // if the height has changed, send the originalHeight
+            return (el.data("originalHeight") == undefined) ? (el.height()) : (el.data("originalHeight"));
+        }
+
+        function columnConform() {
+
+            // find the tallest DIV in the row, and set the heights of all of the DIVs to match it.
+            megamenu.find("> ol > li").not(".informasi, .menuKomoditas").find(".accessible-megamenu-panel-group").each(function () {
+
+                // "caching"
+                var $el = $(this);
+
+                var topPosition = $el.position().top;
+
+                if (currentRowStart != topPosition) {
+
+                    // we just came to a new row.  Set all the heights on the completed row
+                    for (currentDiv = 0; currentDiv < rowDivs.length; currentDiv++) setConformingHeight(rowDivs[currentDiv], currentTallest);
+
+                    // set the variables for the new row
+                    rowDivs.length = 0; // empty the array
+                    currentRowStart = topPosition;
+                    currentTallest = getOriginalHeight($el);
+                    rowDivs.push($el);
+
+                } else {
+
+                    // another div on the current row.  Add it to the list and check if it's taller
+                    rowDivs.push($el);
+                    currentTallest = (currentTallest < getOriginalHeight($el)) ? (getOriginalHeight($el)) : (currentTallest);
+
+                }
+                // do the last row
+                for (currentDiv = 0; currentDiv < rowDivs.length; currentDiv++) setConformingHeight(rowDivs[currentDiv], currentTallest);
+
+            }).parent().equalize({
+                equalize: "width"
+                , reset: true
+            });
+
+        }
+        $(window).resize(function () {
+            columnConform();
+        });
+
+        $(function () {
+            columnConform();
+        });
+        //$(".headerWrapper a.ajax").autoLoadContent();
+    </script>
+    <div class="pagePanel">
+        <div class="bodyContent"><div class="viewAsTable">
+		<div class="col colNormal panelCenter">
+				
+				
+						
+		
+		<div class="contentCore">
+<div id="lihatProduk1532413357" class="lihatProduk">
+        <div class="header">
+        <div class="col produkMainInfo">
+            <div class="listProduk produkTitle viewAsTable">
+				<div class="col jenisProduk">
+										<div class="impor">&nbsp;</div>
+									</div>
+                <div class="col colNormal">
+                    <span class="h1 manufaktur">EPSON</span>
+                    <span class="h1 namaProduk">Ribbon [C13S015142/C13S015511]</span>
+                </div>
+                                    <div class="col colButton">
+                        <a href="#" class="button beliLoginDulu" produkId="449833"><span class="fa fa-shopping-cart fa-lg fa-fw"></span> Beli</a>                    </div>
+                                </div>
+            <div id="lihatProdukTab" class="simpleTab">
+                <ul>
+                                            <li>
+                            <a href="#lihatProdukTab-125"><span>Spesifikasi</span></a>
+                        </li>
+                                                <li>
+                            <a href="#lihatProdukTab-128"><span>Keterangan Tambahan</span></a>
+                        </li>
+                                                                    <li>
+                            <a href="#lihatProdukTab-harga"><span>Riwayat Harga</span></a>
+                        </li>
+                                                                <li>
+                        <a href="#lihatProdukTab-report"><span><i class="fa fa-flag"></i> Laporkan!</span></a>
+                    </li>
+                </ul>
+                                    <div id="lihatProdukTab-125">
+                                                <table cellspacing="0" width="100%" class="tableInfo tablePush">
+                            <tbody>
+                            <tr class="">
+                                <td class="labelAtribut">Komoditas</td>
+                                <td class="normal atributValue">Online Shop - Perangkat Komputer</td>
+                            </tr>
+                            <tr class="">
+                                <td class="labelAtribut">Merek</td>
+                                <td class="normal atributValue">EPSON</td>
+                            </tr>
+                            <tr class="">
+                                <td class="labelAtribut">No Produk</td>
+                                <td class="normal atributValue">44103112-PKM-000533489</td>
+                            </tr>
+                            <tr class="">
+                                <td class="labelAtribut">Nama Produk</td>
+                                <td class="normal atributValue">Ribbon [C13S015142/C13S015511]</td>
+                            </tr>
+                            <tr class="">
+                                <td class="labelAtribut">Unit Pengukuran</td>
+                                <td class="normal atributValue">unit</td>
+                            </tr>
+                            <tr class="">
+                                <td class="labelAtribut">Nama Penyedia</td>
+                                <td class="normal atributValue"><a
+                                        href="https://e-katalog.lkpp.go.id/backend/katalog/info_penyedia/269615"
+                                        class="infoPenyedia"><span
+                                            class="fa fa-search fa-lg fa-fw"></span> Ayooklik.com                                    </a></td>
+                            </tr>
+                            <tr class="">
+                                <td class="labelAtribut">No Produk (Penyedia)</td>
+                                <td class="normal atributValue">9394</td>
+                            </tr>
+							<tr class="">
+                                <td class="labelAtribut">Jenis Produk</td>
+                                <td class="normal atributValue">Impor</td>
+                            </tr>
+                            <tr class="">
+                                <td class="labelAtribut">Berlaku Sampai</td>
+                                <td class="normal atributValue">06 Oktober 2018</td>
+                            </tr>
+                                                        <tr class="">
+                                <td class="labelAtribut">Url Produk</td>
+                                <td class="normal atributValue">www.ayooklik.id/Shop/item/HCwJvcxN1yCXaXWGNu6xLAqSxW0id36gSqMnO-6v3z0</td>
+                            </tr>
+                                                        <tr class="">
+                                <td class="labelAtribut">Harga</td>
+                                <td class="normal atributValue">
+                                    IDR <span class="thousand">42600.00</span> (27 April 2018)                                </td>
+                            </tr>
+
+
+                                                                    <tr>
+                                            <td class="labelAtribut">Part Number</td>
+                                            <td class="normal atributValue">C13S015142/C13S015511</td>
+                                        </tr>
+                                                                                <tr>
+                                            <td class="labelAtribut">Color</td>
+                                            <td class="normal atributValue">Black</td>
+                                        </tr>
+                                                                                <tr>
+                                            <td class="labelAtribut">Capacity Yield</td>
+                                            <td class="normal atributValue"></td>
+                                        </tr>
+                                                                                <tr>
+                                            <td class="labelAtribut">Compatible Product</td>
+                                            <td class="normal atributValue">LQ-1000/1010/1050/1050+/1070/1070+/1170</td>
+                                        </tr>
+                                                                        </tbody>
+                            </table>
+                    </div>
+                                        <div id="lihatProdukTab-128">
+                                                                <tr>
+                                            <td class="labelAtribut">Part Number</td>
+                                            <td class="normal atributValue">C13S015142/C13S015511</td>
+                                        </tr>
+                                                                                <tr>
+                                            <td class="labelAtribut">Color</td>
+                                            <td class="normal atributValue">Black</td>
+                                        </tr>
+                                                                                <tr>
+                                            <td class="labelAtribut">Capacity Yield</td>
+                                            <td class="normal atributValue"></td>
+                                        </tr>
+                                                                                <tr>
+                                            <td class="labelAtribut">Compatible Product</td>
+                                            <td class="normal atributValue">LQ-1000/1010/1050/1050+/1070/1070+/1170</td>
+                                        </tr>
+                                                                        </tbody>
+                            </table>
+                    </div>
+                                                        <div id="lihatProdukTab-harga">
+                                                <div id="riwayatHargaPlaceHolder">	<div class="hargaKurs">
+		<div class="infoFields">
+			<div class="groupField">
+				<div class="field kursDalam">
+					<div class="label">Kurs</div>
+					<div class="value">IDR</div>
+				</div>
+			</div>
+		</div>
+		<table class="tableBox" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>Tanggal</th>
+											<th class="normal">Harga Retail</th>
+											<th class="normal">Harga Pemerintah</th>
+											<th class="normal">Ongkos Kirim</th>
+									</tr>
+			</thead>
+			</tbody>
+		
+			<tr>
+				<td>10 April 2018</td>
+				<td class=" normal moneyStyle"><span class="thousand">44800.00</span></td>
+				<td class=" normal moneyStyle"><span class="thousand">42600.00</span></td>
+				<td class=" normal moneyStyle"><span class="thousand">0.00</span></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+                    </div>
+                    
+                                <div id="lihatProdukTab-report">
+                    
+<script src='https://www.google.com/recaptcha/api.js?hl=id'></script>
+
+<div id="detailTabs">
+    <ul>
+        <li><a href="#tabs-1"><span>Form Laporkan Produk</span></a></li>
+    </ul>
+    <div id="tabs-1">
+        <div class="formWrapper">
+            <form action="https://e-katalog.lkpp.go.id/backend/katalog/laporkan" method="post" accept-charset="utf-8" id="frmLaporkan">            
+<input type="hidden" name="id" value="449833" />
+
+            <div class="viewAsTable">
+                <div class="col">
+                    <div class="contentToolbar">
+                        <button disabled id="submit_laporkan" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                            <span class="ui-button-text"><span class="fa fa-database fa-fw"></span> Kirim</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mandatory">* Wajib dilengkapi</div>
+
+            <div class="groupField">
+                <div class="field">
+                    <div class="label">Nama</div>
+                    <div class="value">
+                        <input type="text" name="nama" value="" size="30"  />                    </div>
+                </div>
+                <div class="field">
+                    <div class="label">NIK/No KTP</div>
+                    <div class="value">
+                        <input type="text" name="nik" value="" size="30"  />                    </div>
+                </div>
+                <div class="field">
+                    <div class="label">Email</div>
+                    <div class="value">
+                        <input type="email" name="email" value="" size="30"  />                    </div>
+                </div>
+                <div class="field">
+                    <div class="label">Alasan</div>
+                    <div class="value">
+                        <textarea name="alasan" cols="40" rows="10" class="alasan" ></textarea>                    </div>
+                </div>
+                
+                <br/>
+                
+                <div class="g-recaptcha" data-sitekey="6LcGyBwTAAAAALWqGS8VtUxfFFT_Wqboccdo2qQ6"
+                    data-callback="recaptchaCallback"></div>
+
+            </div>
+            </form>        </div>
+    </div>
+</div>
+
+
+<div id="modalLaporkan" style="display:none;"></div>
+
+<script>
+
+    function recaptchaCallback() {
+        $('#submit_laporkan').removeAttr('disabled');
+    }
+
+    $(function () {
+        
+        $('#detailTabs').tabs();
+
+        var frmInput = $('#frmLaporkan');
+        var tplSubmitProcess = $('#modalLaporkan');
+        var fileUpload = frmInput.find("input[name=fileUpload]");
+
+        frmInput.on('submit', function(e){
+            e.preventDefault();
+        });
+
+        var validationList = {
+            nama: {
+                required: "mohon diisi"
+            },
+            email: {
+                
+                required: "mohon diisi",
+                email:"format email tidak sesuai"
+
+            },
+            nik: {
+                required: "mohon diisi"
+            },
+            alasan: {
+                required: "mohon diisi"
+            }
+        }
+
+        $.each(validationList, function(index01, value01){
+            frmInput.find("[name="+ index01 +"]").attr("required", true).parents(".field").find(".label").filter(function(){
+                return !$(this).is(":contains('*')");
+            }).prepend("* ");
+        });
+
+        frmInput.validate({
+            submitHandler: function(form){
+                submitForm(frmInput);
+            }
+            ,messages: validationList
+            ,errorPlacement: function(error, element){
+                error.appendTo(element.parent());
+            }
+            ,invalidHandler: function(event, validator){
+                // 'this' refers to the form
+                var errors = validator.numberOfInvalids();
+                if(errors) {
+                    $().myAlertDialog({
+                        title: "Error"
+                        ,message: "Ada kesalahan pada pengisian form. Mohon di cek kembali."
+                    });
+                }
+            }
+        });
+
+        frmInput.find("input[type=text]:first").focus();
+
+        fileUpload.uploadifive({
+            uploadScript: "https://e-katalog.lkpp.go.id/backend/katalog/laporkan"
+                , uploadLimit: 0
+                , queueSizeLimit: 1
+                , fileSizeLimit: "5MB"
+                , buttonText: "Cari File"
+                , method: "post"
+                , auto: false
+                , fileType: [
+                      "application/pdf"
+                    , "application/x-pdf"
+                    , "application/acrobat"
+                    , "applications/vnd.pdf"
+                    , "application/zip"
+                    , "image/jpeg"
+                ]
+                , onError: function(errorType) {
+                    $().myAlertDialog({
+                        message: "Error " + errorType
+                        , title: "Error"
+                    });
+                    fileUpload.uploadifive("clearQueue");
+                }
+                , onUpload: function() {
+
+                    this.data('uploadifive').settings.formData = {
+                        id: frmInput.find("input[name=id]").val()
+                        , nama: frmInput.find("input[name=nama]").val()
+                        , nik: frmInput.find("input[name=nik]").val()
+                        , email: frmInput.find("input[name=email]").val()
+                        , alasan: frmInput.find("textarea[name=alasan]").val()
+                    };
+                }
+                , onUploadComplete: function(file, data) {
+
+                    fileUpload.uploadifive("clearQueue");
+
+                    var data = $.parseJSON(data);
+                    var messageOpt = {
+                        title: "Error"
+                        , buttons: {
+                            "OK": function() {
+                                tplSubmitProcess.dialog("close");
+                            }
+                        }
+                    }
+                    if (parseInt(data.status) == 1) {
+                        messageOpt = $.extend(messageOpt, {
+                            title: "Sukses"
+                            , close: function () {
+                                tplSubmitProcess.dialog("destroy");
+                            }
+                        });
+
+                        tplSubmitProcess.removeLoadingAnim();
+                    }else{
+                        messageOpt = {
+                            title: "Error"
+                            , 
+                            // close: function () {
+                            //     tplSubmitProcess.dialog("destroy");
+                            // }
+                                buttons: {
+                                "OK": function () {
+                                    tplSubmitProcess.dialog("close");
+                                }
+                            }
+                        };
+
+                        tplSubmitProcess.removeLoadingAnim();
+                    }
+
+                    tplSubmitProcess.html(data.message).dialog("option", messageOpt);
+                    frmInput.find("textarea.alasan").val("");
+                }
+        });
+
+        function submitForm(frm) {
+            tplSubmitProcess.dialog({
+                title: "Mohon Tunggu"
+                , modal: true
+                , width: 300
+                , height: 150
+                , open: function () {
+                    tplSubmitProcess.setLoadingAnim({
+                        loadingText: "Menyimpan data laporan..."
+                    });
+
+                    if (frm.find(".uploadifive-queue-item").length > 0) {
+                        fileUpload.uploadifive("upload");
+                    } else {
+                        $.ajax({
+                            url: frm.attr("action"),
+                            data: frm.serialize(),
+                            type: 'post',
+                            success: function (data) {
+                                var data = $.parseJSON(data);
+                                var messageOpt = {
+                                    title: "Error"
+                                    , buttons: {
+                                        "OK": function () {
+                                            tplSubmitProcess.dialog("close");
+                                        }
+                                    }
+                                };
+                                if (parseInt(data.status) == 1) {
+                                    messageOpt = $.extend(messageOpt, {
+                                        title: "Sukses"
+                                        , close: function () {
+                                            tplSubmitProcess.dialog("destroy");
+                                        }
+                                    });
+
+                                    tplSubmitProcess.removeLoadingAnim();
+                                }else{
+                                    messageOpt = {
+                                        title: "Error"
+                                        , 
+                                        // close: function () {
+                                        //     tplSubmitProcess.dialog("destroy");
+                                        // }
+                                            buttons: {
+                                            "OK": function () {
+                                                tplSubmitProcess.dialog("close");
+                                            }
+                                        }
+                                    };
+
+                                    tplSubmitProcess.removeLoadingAnim();
+                                }
+
+
+                                tplSubmitProcess.html(data.message).dialog("option", messageOpt);
+                                frmInput.find("textarea.alasan").val("");
+                            },
+                            error: function (e) {
+                                var messageOpt = {
+                                    title: "Error"
+                                    , buttons: {
+                                        "OK": function () {
+                                            tplSubmitProcess.dialog("close");
+                                        }
+                                    }
+                                };
+                                tplSubmitProcess.html(e.statusText).dialog("option", messageOpt);
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
+</script>
+                </div>
+            </div>
+
+        </div>
+        <div class="col imageGallery">
+            <div class="myWrap">
+                <div class="galleryWrapper">
+                    <div class="gallery">
+                        <div class="galleryInner">
+                                                                <div><a fileId="8034892" href="https://ayooklik.id/images/produk/9394/c13s015511.jpg?w=300&h=300"
+                                            thumbBigUrl="https://ayooklik.id/images/produk/9394/c13s015511.jpg?w=300&h=300" rel="album"
+                                            class="imageWrapper zoomImage tooltip"
+                                            style="width: 50px; height: 50px;"
+                                            title="c13s015511.jpg"><span
+                                                style="width: 50px;"><img
+                                                    src="https://ayooklik.id/images/produk/9394/c13s015511.jpg?w=50&h=50"
+                                                    width="50"/></span></a></div>
+                                                            </div>
+                    </div>
+                    <div class="preview">
+                        <div class="imageOuterWrapper"
+                             style="width: 300px; height: 300px;">
+                            <a href="#" class="imageWrapper tooltip" title="Klik untuk memperbesar"><span
+                                    style="width: 300px;"><img src=""
+                                                                                                    width="300"
+                                                                                                    height="300"/></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="lampiranWrapper">
+                    <div class="lampiranTitle"><span>Lampiran:</span></div>
+                    <div class="lampiranInner">
+                        <ul>                                <li><a href="https://ayooklik.id/images/produk/9394/c13s015511.jpg" class="tooltip"
+                                       title="c13s015511.jpg">c13s015511.jpg</a>
+                                </li>
+                                </ul>                    </div>
+                </div>
+                            </div>
+        </div>
+    </div>
+
+    <div id="tplProduk" style="display:none;">
+        <table>
+            <tbody>
+            <tr valign="top">
+                <td valign="top" class="namaAtribut"></td>
+                <td class="input"></td>
+            </tr>
+            </tbody>
+        </table>
+        ?>
+    </div>
+    <div id="tplInfoPenyediaDialog1532413357" style="display:none;"></div>
+    <div id="tplProdukForShoppingCart" style="display:none;">
+                <div class="itemWrapper">
+            <div class="col imageProduk">
+                <div class="imageOuterWrapper">
+                    <a href="https://e-katalog.lkpp.go.id/backend/katalog/lihat_produk/449833" class="imageWrapper lihatProduk tooltip"
+                       title=""><span style="width: 50px;">
+				<img src="https://ayooklik.id/images/produk/9394/c13s015511.jpg?w=100&h=100" width="50"/></span>
+                    </a>
+                </div>
+            </div>
+            <div class="col infoProduk">
+                <div><div class="kategoriProduk"><div class="categoryPath"><ol><li><a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/77?kategoriProdukId=2119">Computer Supplies</a></li><li><span class="fa fa-caret-right fa-fw"></span><a href="https://e-katalog.lkpp.go.id/backend/katalog/list_produk/77?kategoriProdukId=2209">Pita Printer</a></li></ol></div></div><div class="noProduk itemTitle"><a href="https://e-katalog.lkpp.go.id/backend/katalog/lihat_produk/449833" class="lihatProduk">44103112-PKM-000533489</a></div>
+			<div class="namaProdukWrapper"><a href="https://e-katalog.lkpp.go.id/backend/katalog/lihat_produk/449833" class="lihatProduk">
+				<span class="namaManufaktur">EPSON</span>
+				<span class="namaProduk">Ribbon [C13S015142/C13S015511]</span>
+				</a>
+			</div></div>            </div>
+            <div class="col actionProduk hargaProduk">
+                <div class="hargaUtama">
+                    Harga: <span class="currency">IDR</span>
+                    <span class="thousand">42600.00</span></div>
+                <div class="updatedDate">
+                    <span class="updatedDate">Update Harga                        : 27 April 2018</span>
+                </div>
+                <div class="penyedia">Penyedia: <a
+                        href="https://e-katalog.lkpp.go.id/backend/katalog/info_penyedia/269615"
+                        class="infoPenyedia">Ayooklik.com</a></div>
+            </div>
+            <!--
+		<div class="col actionProduk secondaryWrap">
+			<div class="buttons btnSelect">
+				<a href="#" class="select">Bandingkan</a>
+				<a href="https://e-katalog.lkpp.go.id/backend/katalog/keranjang_tambah/449833" class="beli"><span class="icon iconCart"></span>Beli</a>
+			</div>
+		</div>
+		-->
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+
+    var winIdList = $("#lihatProduk1532413357");
+    var previewImg = $(".preview a");
+    var tplInfoPenyediaDialog1532413357 = winIdList.find("#tplInfoPenyediaDialog1532413357");
+    var riwayatHargaPlaceHolder = winIdList.find("#riwayatHargaPlaceHolder");
+    var tplProdukForShoppingCart = winIdList.find("#tplProdukForShoppingCart");
+
+    winIdList.find("#lihatProdukTab").tabs();
+    winIdList.find(".thousand").convertThousand();
+
+    winIdList.find(".button").button().filter(".buttonDisabled").button("disable");
+    
+    /* <Shopping Cart> */
+        winIdList.find("a.beliLoginDulu").click(function (e) {
+        e.preventDefault();
+        $().myAlertDialog({
+                        message: "Silahkan login terlebih dahulu untuk melakukan pembelian."
+            , title: "Otentikasi diperlukan"
+            , buttons: {
+                "OK": function () {
+                    //window.location.href = "https://e-katalog.lkpp.go.id/login";
+                    $(this).dialog("close");
+                }
+            }
+                    });
+    });
+    /* <Shopping Cart> */
+
+    /* <Provinsi Harga Utama> */
+    var provinsiIdSelect = winIdList.find("select[name=provinsiId]");
+    if (provinsiIdSelect.length == 1) {
+        provinsiIdSelect.change(function () {
+            var sel = $(this).find("option:selected").val();
+            var put = provinsiIdSelect.siblings(".put");
+            var loading = provinsiIdSelect.siblings(".smallLoading");
+
+            loading.hide();
+            put.empty().hide();
+            if (sel != "") {
+                loading.show();
+
+                $.get(
+                    "https://e-katalog.lkpp.go.id/backend/katalog/get_harga_provinsi/449833/?tipe=utama&provinsiId=" + sel
+                    , function (data) {
+                        loading.hide();
+                        put.html(data).show();
+                        put.find(".thousand").convertThousand();
+                    }
+                );
+            }
+        });
+    }
+    /* </Provinsi Harga Utama> */
+
+    /* <Provinsi Riwayat Harga> */
+    var provinsiIdRiwayatSelect = winIdList.find("select[name=provinsiIdRiwayat]");
+    if (provinsiIdRiwayatSelect.length == 1) {
+        provinsiIdRiwayatSelect.change(function () {
+            var sel = $(this).find("option:selected").val();
+            var loading = provinsiIdRiwayatSelect.siblings(".smallLoading");
+
+            loading.hide();
+            riwayatHargaPlaceHolder.empty().hide();
+            if (sel != "") {
+                loading.show();
+
+                $.get(
+                    "https://e-katalog.lkpp.go.id/backend/katalog/get_harga_provinsi/449833/?tipe=riwayat&provinsiId=" + sel
+                    , function (data) {
+                        loading.hide();
+                        riwayatHargaPlaceHolder.html(data).show();
+                        riwayatHargaPlaceHolder.find(".thousand").convertThousand();
+                    }
+                );
+            }
+        });
+    }
+    /* </Provinsi Riwayat Harga> */
+
+
+    /* <Kabupaten Harga Utama> */
+    var kabupatenIdSelect = winIdList.find("select[name=kabupatenId]");
+    if (kabupatenIdSelect.length == 1) {
+        kabupatenIdSelect.change(function () {
+            var sel = $(this).find("option:selected").val();
+            var put = kabupatenIdSelect.siblings(".put");
+            var loading = kabupatenIdSelect.siblings(".smallLoading");
+
+            loading.hide();
+            put.empty().hide();
+            if (sel != "") {
+                loading.show();
+
+                $.get(
+                    "https://e-katalog.lkpp.go.id/backend/katalog/get_harga_kabupaten/449833/?tipe=utama&kabupatenId=" + sel
+                    , function (data) {
+                        loading.hide();
+                        put.html(data).show();
+                        put.find(".thousand").convertThousand();
+                    }
+                );
+            }
+        });
+    }
+    /* </Kabupaten Harga Utama> */
+
+    /* <Kabupaten Riwayat Harga> */
+    var kabupatenIdRiwayatSelect = winIdList.find("select[name=kabupatenIdRiwayat]");
+    if (kabupatenIdRiwayatSelect.length == 1) {
+        kabupatenIdRiwayatSelect.change(function () {
+            var sel = $(this).find("option:selected").val();
+            var loading = kabupatenIdRiwayatSelect.siblings(".smallLoading");
+
+            loading.hide();
+            riwayatHargaPlaceHolder.empty().hide();
+            if (sel != "") {
+                loading.show();
+
+                $.get(
+                    "https://e-katalog.lkpp.go.id/backend/katalog/get_harga_kabupaten/449833/?tipe=riwayat&kabupatenId=" + sel
+                    , function (data) {
+                        loading.hide();
+                        riwayatHargaPlaceHolder.html(data).show();
+                        riwayatHargaPlaceHolder.find(".thousand").convertThousand();
+                    }
+                );
+            }
+        });
+    }
+
+    $.fn.imageItemExecute = function () {
+        a = this;
+        if (a.length == 1) {
+            previewImg.attr({
+                "fileId": a.attr("fileId")
+            }).find("img").attr({
+                "src": a.attr("thumbBigUrl")
+            });
+        } else {
+            previewImg.find("img").attr({
+                "src": "https://ayooklik.id/images/produk/9394/c13s015511.jpg?w=100&h=100"
+            });
+        }
+    }
+    winIdList.find(".gallery a:first").imageItemExecute();
+    winIdList.find(".preview a").click(function (e) {
+        e.preventDefault();
+        var a = $(this);
+        winIdList.find(".gallery a[fileId=" + a.attr("fileId") + "]").click();
+    });
+    winIdList.find(".gallery a").click(function (e) {
+        e.preventDefault();
+        $(this).imageItemExecute();
+    });
+
+    winIdList.find(".gallery .zoomImage").fancybox({
+        type: "image"
+    });
+    winIdList.find(".lampiranWrapper .tooltip").tooltip();
+
+</script>
+</div>
+			</div>
+</div>
+
+<script type="text/javascript">
+	 var panelLeft = $(".panelLeft");
+	 var paneTrigger = panelLeft.next();
+	 
+	 paneTrigger.toggle(
+		function(){
+			panelLeft.hide({ 
+				queue:false, 
+				duration:100,
+				done: function(){
+					paneTrigger.addClass("closed");
+					paneTrigger.find(".fa").addClass("fa-chevron-right");
+				}
+			});
+		},
+		function(){
+		   panelLeft.show({ 
+				queue:false, 
+				duration:250 ,
+				done: function(){
+					paneTrigger.removeClass("closed");
+					paneTrigger.find(".fa").removeClass("fa-chevron-right");
+				}
+			});
+		}
+	 );
+</script></div>
+    </div>
+</div>
+
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-58838321-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+<!-- Developed by: Benny Regardho, PT Javan Cipta Solusi (https://javan.co.id) -->
+
+</body>
+</html>
