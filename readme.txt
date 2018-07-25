@@ -1,0 +1,1 @@
+https://arjunphp.com/creating-restful-api-slim-framework-3-eloquent/

@@ -1,7 +1,9 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
+ini_set('log_errors', true);
+ini_set('html_errors', 1);
+error_reporting(E_ALL | E_STRICT); // with E_STRICT for PHP 5.3 compatibility
 
 /*
  * Readme
@@ -32,8 +34,9 @@ $app->get('/', function ($request, $response, $args) use($app) {
 $app->get('/lkppmulti[/]', function ($request, $response, $args) {
 
 	// $dirName = "cache";
-    $fileName = "list_produk_77_269615.html";
-    $url = "https://e-katalog.lkpp.go.id/backend/katalog/list_produk/77/?isSubmitted=1&kategoriProdukId=&keyword=&penyediaId=269615&manufakturId=all&orderBy=hargaAsc&list=100";
+    $fileName = "list_produk_77_203186.html";
+    // $url = "https://e-katalog.lkpp.go.id/backend/katalog/list_produk/77/?isSubmitted=1&kategoriProdukId=&keyword=&penyediaId=203186&manufakturId=all&orderBy=hargaAsc&list=100";
+    $url = "https://e-katalog.lkpp.go.id/backend/katalog/list_produk/77/?isSubmitted=1&kategoriProdukId=&keyword=&penyediaId=all&manufakturId=all&orderBy=hargaDesc&list=100";
 
     if(!file_exists($fileName)){
 
@@ -45,8 +48,7 @@ $app->get('/lkppmulti[/]', function ($request, $response, $args) {
 		curl_close($ch);
 
 	    @file_put_contents($fileName, $data, FILE_APPEND);
-
-	    $data = file_get_contents($fileName);
+	    // $data = file_get_contents($fileName);
 	} else {
 
 		$data = file_get_contents($fileName);
@@ -64,7 +66,7 @@ $app->get('/lkppmulti[/]', function ($request, $response, $args) {
 		if($i>=1){
 
 			echo "Page: ".$i.";";
-			$fileName = "list_produk_77_269615_".$i.".html";
+			$fileName = "list_produk_77_203186_".$i.".html";
     		$url .= "&page=".$i;
 
 		    if(!file_exists($fileName)){
@@ -77,7 +79,6 @@ $app->get('/lkppmulti[/]', function ($request, $response, $args) {
 				curl_close($ch);
 
 			    @file_put_contents($fileName, $data, FILE_APPEND);
-
 			    $data = file_get_contents($fileName);
 			}
 
@@ -101,6 +102,35 @@ $app->get('/demolkpp[/{id}]', function ($request, $response, $args) {
 
 });
 
+$app->get('/test', function ($request, $response, $args) {
+	/*https://e-katalog.lkpp.go.id/backend/katalog/lihat_produk/500670
+	https://e-katalog.lkpp.go.id/backend/katalog/lihat_produk/418761
+	https://e-katalog.lkpp.go.id/backend/katalog/lihat_produk/412079
+	https://e-katalog.lkpp.go.id/backend/katalog/lihat_produk/417113
+	https://e-katalog.lkpp.go.id/backend/katalog/lihat_produk/417330
+	https://e-katalog.lkpp.go.id/backend/katalog/lihat_produk/416395
+	https://e-katalog.lkpp.go.id/backend/katalog/lihat_produk/412880*/
+
+	$arr = array(500670,418761,412079,417113,417330,416395,412880);
+	// var_dump($arr);
+	foreach ($arr as $key) {
+
+		$fileName = "lihat_produk_".$key.".html";
+	    $url = "https://e-katalog.lkpp.go.id/backend/katalog/lihat_produk/".$key;
+	    if(!file_exists($fileName)){
+
+		    $ch = curl_init();
+		    curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1000);
+			$data = curl_exec($ch);
+			curl_close($ch);
+		    @file_put_contents($fileName, $data, FILE_APPEND);
+		}
+		sleep(5);
+	}
+});
+
 $app->get('/lkpp/product[/{id}]', function ($request, $response, $args) {
 	// echo "https://e-katalog.lkpp.go.id/backend/katalog/lihat_produk/".$args['id'];
 	// $dirName = dirname(__FILE__) . "/cache";
@@ -117,70 +147,176 @@ $app->get('/lkpp/product[/{id}]', function ($request, $response, $args) {
 		$data = curl_exec($ch);
 		curl_close($ch);
 
-	    @file_put_contents($fileName, $data, FILE_APPEND);
-
-	    $data = file_get_contents($fileName);
+	    @file_put_contents($fileName, $data);
+	    // $data = file_get_contents($fileName);
 	} else {
 
 		$data = file_get_contents($fileName);
 	}
-
     // return $data;
 
     //now parsing it into html
 	$html = str_get_html($data);
-	foreach($html->find('table.tableInfo') as $ti) {
-		// echo $html->outertext;
-		$item['komoditas'] = $ti->find("tr td",1)->plaintext;
-		$item['merek'] = $ti->find("tr td",3)->plaintext;
-		$item['noProduk'] = $ti->find("tr td",5)->plaintext;
-		$item['namaProduk'] = $ti->find("tr td",7)->plaintext;
-		$item['unit'] = $ti->find("tr td",9)->plaintext;
-		$item['penyedia'] = $ti->find("tr td",11)->plaintext;
-		$item['penyediaUrl'] = $ti->find("tr td a",0)->href;
-		$item['noProdukPenyedia'] = $ti->find("tr td",13)->plaintext;
-		$item['jenisProduk'] = $ti->find("tr td",15)->plaintext;
-		$item['berlakuSampai'] = $ti->find("tr td",17)->plaintext;
-		$item['urlProduk'] = $ti->find("tr td",19)->plaintext;
-		$item['hargaProduk'] = $ti->find("tr td",21)->plaintext;
-		$item['spec'] = "";
+	if($html){
 
-		if(isset($ti->find("tr td",23)->plaintext)){
-			$item['spec'] = $ti->find("tr td",23)->plaintext;
+		$rowData = array();
+		foreach($html->find('table.tableInfo') as $ti) {
+			// echo $html->outertext;
+
+			/*$td = array();
+		    foreach($ti->find('td') as $cell) {
+		        // push the cell's text to the array
+		        $item[] = $cell->plaintext;
+		    }*/
+
+		    $komoditas = strtolower(trim($ti->find("tr td",0)->plaintext));
+			$item[$komoditas] = $ti->find("tr td",1)->plaintext;
+			$item['merek'] = $ti->find("tr td",3)->plaintext;
+			$item['noProduk'] = $ti->find("tr td",5)->plaintext;
+			$item['namaProduk'] = $ti->find("tr td",7)->plaintext;
+			$item['unit'] = $ti->find("tr td",9)->plaintext;
+			$item['penyedia'] = $ti->find("tr td",11)->plaintext;
+			$item['penyediaUrl'] = $ti->find("tr td a",0)->href;
+			$item['noProdukPenyedia'] = $ti->find("tr td",13)->plaintext;
+			$item['jenisProduk'] = $ti->find("tr td",15)->plaintext;
+			$item['berlakuSampai'] = $ti->find("tr td",17)->plaintext;
+			$item['urlProduk'] = $ti->find("tr td",19)->plaintext;
+			$item['hargaProduk'] = $ti->find("tr td",21)->plaintext;
+			$item['spec'] = "";
+
+			if(isset($ti->find("tr td",23)->plaintext)){
+				$item['spec'] .= $ti->find("tr td",22)->plaintext.":".$ti->find("tr td",23)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",25)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",24)->plaintext.":".$ti->find("tr td",25)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",27)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",26)->plaintext.":".$ti->find("tr td",27)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",29)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",28)->plaintext.":".$ti->find("tr td",29)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",31)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",30)->plaintext.":".$ti->find("tr td",31)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",33)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",32)->plaintext.":".$ti->find("tr td",33)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",35)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",34)->plaintext.":".$ti->find("tr td",35)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",37)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",36)->plaintext.":".$ti->find("tr td",37)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",39)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",38)->plaintext.":".$ti->find("tr td",39)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",41)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",40)->plaintext.":".$ti->find("tr td",41)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",43)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",42)->plaintext.":".$ti->find("tr td",43)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",45)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",44)->plaintext.":".$ti->find("tr td",45)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",47)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",46)->plaintext.":".$ti->find("tr td",47)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",49)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",48)->plaintext.":".$ti->find("tr td",49)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",51)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",50)->plaintext.":".$ti->find("tr td",51)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",53)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",52)->plaintext.":".$ti->find("tr td",53)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",55)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",54)->plaintext.":".$ti->find("tr td",55)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",57)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",56)->plaintext.":".$ti->find("tr td",57)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",59)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",58)->plaintext.":".$ti->find("tr td",59)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",61)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",60)->plaintext.":".$ti->find("tr td",61)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",63)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",62)->plaintext.":".$ti->find("tr td",63)->plaintext;
+			}
+
+			if(isset($ti->find("tr td",65)->plaintext)){
+				$item['spec'] .= "<br>".$ti->find("tr td",64)->plaintext.":".$ti->find("tr td",65)->plaintext;
+			}
+
+			$rowData[] = $item;
+			
+			// 16
+			try {
+				$statement = $this->db->prepare("INSERT IGNORE INTO `detailcatalog` (komoditas, merek, noProduk, namaProduk, unit, penyedia, penyediaUrl, noProdukPenyedia, jenisProduk, berlakuSampai, urlProduk, hargaProduk, spec) VALUES(:komoditas, :merek, :noProduk, :namaProduk, :unit, :penyedia, :penyediaUrl, :noProdukPenyedia, :jenisProduk, :berlakuSampai, :urlProduk, :hargaProduk, :spec) ON DUPLICATE KEY UPDATE spec=:spec");
+
+				// echo var_dump($statement)."<br>";
+			   	$statement->execute(array(':komoditas'=>$item['komoditas'], ':merek'=>$item['merek'], ':noProduk'=>$item['noProduk'], ':namaProduk'=>$item['namaProduk'], ':unit'=>$item['unit'], ':penyedia'=>$item['penyedia'], ':penyediaUrl'=>$item['penyediaUrl'], ':noProdukPenyedia'=>$item['noProdukPenyedia'], ':jenisProduk'=>$item['jenisProduk'], ':berlakuSampai'=>$item['berlakuSampai'], ':urlProduk'=>$item['urlProduk'], ':hargaProduk'=>trim($item['hargaProduk']), ':spec'=>$item['spec']));
+
+			} catch(PDOException $e) {
+			    echo $e->getMessage();
+			}
 		}
-		
-		// 16
-		try {
-			$statement = $this->db->prepare("INSERT IGNORE INTO `detailcatalog` (komoditas, merek, noProduk, namaProduk, unit, penyedia, penyediaUrl, noProdukPenyedia, jenisProduk, berlakuSampai, urlProduk, hargaProduk, spec) VALUES(:komoditas, :merek, :noProduk, :namaProduk, :unit, :penyedia, :penyediaUrl, :noProdukPenyedia, :jenisProduk, :berlakuSampai, :urlProduk, :hargaProduk, :spec)");
-
-			// echo var_dump($statement)."<br>";
-		   	$statement->execute(array(':komoditas'=>$item['komoditas'], ':merek'=>$item['merek'], ':noProduk'=>$item['noProduk'], ':namaProduk'=>$item['namaProduk'], ':unit'=>$item['unit'], ':penyedia'=>$item['penyedia'], ':penyediaUrl'=>$item['penyediaUrl'], ':noProdukPenyedia'=>$item['noProdukPenyedia'], ':jenisProduk'=>$item['jenisProduk'], ':berlakuSampai'=>$item['berlakuSampai'], ':urlProduk'=>$item['urlProduk'], ':hargaProduk'=>trim($item['hargaProduk']), ':spec'=>$item['spec']));
-
-		} catch(PDOException $e) {
-		    echo $e->getMessage();
-		}
-
-		$listproduct[] = $item;
 	}
 
-	echo json_encode($listproduct);
+	/*$i = 0;
+	foreach ($rowData[0] as $value) {
+		if($i%2==0) $key = $value;
+		if($i%2!=0) {
+			$value = $value;
+			$newitem[strtolower($key)] = $value;
+			$newrowData = $newitem;
+		}
+		$i++;
+	}*/
+
+	echo json_encode($rowData);
+    // return $this->response->withJson($newrowData);
 });
 
 $app->get('/lkpp[/{id}]', function ($request, $response, $args) {
 
-    header("Content-type: application/vnd-ms-excel");
- 	header("Content-Disposition: attachment; filename=Ayooklik.xls");
+    // header("Content-type: application/vnd-ms-excel");
+ 	// header("Content-Disposition: attachment; filename=Ayooklik.xls");
     
     /*
      * https://e-katalog.lkpp.go.id/backend/katalog/list_produk/77
      */
     // $dirName = "cache";
-    $fileName = "list_produk_77_269615.html";
+    $fileName = "list_produk_77_203186.html";
     // echo $fileName;
-    $url = "https://e-katalog.lkpp.go.id/backend/katalog/list_produk/77/?isSubmitted=1&kategoriProdukId=&keyword=&penyediaId=269615&manufakturId=all&orderBy=hargaAsc&list=100";
+    $url = "https://e-katalog.lkpp.go.id/backend/katalog/list_produk/77/?isSubmitted=1&kategoriProdukId=&keyword=&penyediaId=203186&manufakturId=all&orderBy=hargaDesc&list=100";
 
     if(isset($args['id'])>1){
-    	$fileName = "list_produk_77_269615_".$args['id'].".html";
+    	$fileName = "list_produk_77_203186_".$args['id'].".html";
     	$url .= "&page=".$args['id'];
 	}
     // echo $url;
@@ -206,7 +342,7 @@ $app->get('/lkpp[/{id}]', function ($request, $response, $args) {
     //now parsing it into html
 	$html = str_get_html($data);
 	if($html){
-		/*echo $html->find("div.pageTitleWrap",0)->plaintext;
+		echo $html->find("div.pageTitleWrap",0)->plaintext;
 		$totHal = $html->find("div.contentNaviTop .control",0)->plaintext;
 		preg_match_all('!\d+!', $totHal, $matches);
 		echo "Total Halaman: " . trim($matches[0][0])."<br>";
@@ -259,7 +395,7 @@ $app->get('/lkpp[/{id}]', function ($request, $response, $args) {
 				$listproduct[] = $item;
 			}
 
-		}*/
+		}
 	}
 	// echo json_encode($listproduct);
 
@@ -267,9 +403,11 @@ $app->get('/lkpp[/{id}]', function ($request, $response, $args) {
 	$limit = 10;
 	$page = ($page - 1) * $limit;
 
-	$sth = $this->db->prepare("select * from ecatalog a left join detailcatalog b on a.noProduk=b.noProduk where a.penyedia='Ayooklik.com' and b.noProduk!='' LIMIT ".$limit." OFFSET ".$page);
+	// $sth = $this->db->prepare("select * from ecatalog a left join detailcatalog b on a.noProduk=b.noProduk where a.penyedia='Ayooklik.com' and b.noProduk!='' LIMIT ".$limit." OFFSET ".$page);
 
 	// $sth = $this->db->prepare("select * from ecatalog a where a.penyedia='Ayooklik.com' LIMIT ".$limit." OFFSET ".$page);
+
+	$sth = $this->db->prepare("select * from ecatalog a left join detailcatalog b on a.noProduk=b.noProduk and b.noProduk!='' ORDER BY a.id DESC LIMIT ".$limit." OFFSET ".$page);
     $sth->execute();
     $ecatalog = $sth->fetchAll();
 
@@ -290,10 +428,12 @@ $app->get('/lkpp[/{id}]', function ($request, $response, $args) {
     		<th>penyedia</th>
     		<th>akhirTayang</th>
     		<th>Komoditas</th>';
-    		echo '<th>Unit</th>
+
+    		/*echo '<th>Unit</th>
     		<th>No SKU</th>
     		<th>Url Produk</th>
-    		<th>Spec</th>';    		
+    		<th>Spec</th>';*/
+
     	echo '</tr>';
 
     foreach ($ecatalog as $key) {
@@ -301,12 +441,19 @@ $app->get('/lkpp[/{id}]', function ($request, $response, $args) {
         $produkId = explode("/",$key['lihatProduk']);
         $produkId = end($produkId);
 
+        $ch = curl_init();
+	    curl_setopt($ch, CURLOPT_URL, "http://localhost/lkppDemo/lkpp/product/".$produkId);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1000);
+		$data = curl_exec($ch);
+		curl_close($ch);
+
         echo "<tr>
             <td>".$key['infoProduk']."</td>
             <td>".$key['infoProduk1']."</td>
             <td>".$key['noProduk']."</td>";
-            // echo "<td><a href='lkpp/product/".$produkId."'>".$key['lihatProduk']."</a></td>";
-            echo "<td>".$key['lihatProduk']."</td>";
+            echo "<td><a href='lkpp/product/".$produkId."'>".$key['lihatProduk']."</a></td>";
+            // echo "<td>".$key['lihatProduk']."</td>";
             echo "<td>".$key['imageProduk']."</td>
             <td>".$key['namaManufaktur']."</td>
             <td>".$key['namaProduk']."</td>
@@ -317,10 +464,10 @@ $app->get('/lkpp[/{id}]', function ($request, $response, $args) {
             <td>".$key['penyedia']."</td>
             <td>".$key['penyedia1']."</td>";
 
-            echo "<td>".$key['unit']."</td>
+            /*echo "<td>".$key['unit']."</td>
             <td>".$key['noProdukPenyedia']."</td>
             <td>".$key['urlProduk']."</td>
-            <td>".$key['spec']."</td>";
+            <td>".$key['spec']."</td>";*/
 
         echo "</tr>";
     }
