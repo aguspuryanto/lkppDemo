@@ -1,8 +1,8 @@
 <?php
-ini_set('display_errors', true);
-ini_set('display_startup_errors', true);
-ini_set('log_errors', true);
-ini_set('html_errors', 1);
+// ini_set('display_errors', true);
+// ini_set('display_startup_errors', true);
+// ini_set('log_errors', true);
+// ini_set('html_errors', 1);
 error_reporting(E_ALL | E_STRICT); // with E_STRICT for PHP 5.3 compatibility
 
 /*
@@ -28,7 +28,7 @@ $app->get('/', function ($request, $response, $args) use($app) {
     // return $response;
     // return $this->view->render($response, 'index.php');
     // return $response->withRedirect('http://localhost/demolkpp/lkpp'); 
-    return $response->withStatus(302)->withHeader('Location', 'http://localhost/lkppDemo/demolkpp');
+    return $response->withStatus(302)->withHeader('Location', 'http://localhost/lkppDemo/demolkpp/1');
 });
 
 $app->get('/lkppmulti[/]', function ($request, $response, $args) {
@@ -47,7 +47,7 @@ $app->get('/lkppmulti[/]', function ($request, $response, $args) {
 		$data = curl_exec($ch);
 		curl_close($ch);
 
-	    @file_put_contents($fileName, $data, FILE_APPEND);
+	    @file_put_contents($fileName, $data);
 	    // $data = file_get_contents($fileName);
 	} else {
 
@@ -75,10 +75,11 @@ $app->get('/lkppmulti[/]', function ($request, $response, $args) {
 			    curl_setopt($ch, CURLOPT_URL, $url);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1000);
+				curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
 				$data = curl_exec($ch);
 				curl_close($ch);
 
-			    @file_put_contents($fileName, $data, FILE_APPEND);
+			    @file_put_contents($fileName, $data);
 			    $data = file_get_contents($fileName);
 			}
 
@@ -90,15 +91,127 @@ $app->get('/lkppmulti[/]', function ($request, $response, $args) {
 
 $app->get('/demolkpp[/{id}]', function ($request, $response, $args) {
 
+	$allGetVars = $request->getQueryParams();
+	if($allGetVars){
+		// var_dump($allGetVars);
+	}
+
+	$cacheDir = realpath(dirname(__FILE__)) . "/cache/";
+	// echo $cacheDir;
+
+	$fileName = $cacheDir . "list_produk_77";
+	if($allGetVars['penyediaId']){
+		$result = $this->db->query("select distinct(penyediaUrl) from ecatalog where penyedia='".$allGetVars['penyediaId']."'");
+		$fields = ($result->fetch(PDO::FETCH_ASSOC));
+		// echo var_dump($fields['penyediaUrl']);
+		$penyediaId = explode("/", $fields['penyediaUrl']);
+		$penyediaId = end($penyediaId);
+
+		$fileName .= "_".$penyediaId;
+	}
+    // echo $fileName;
+    $url = "https://e-katalog.lkpp.go.id/backend/katalog/list_produk/77";
+
+    if($allGetVars['isSubmitted']){
+    	$url .= "/?isSubmitted=".$allGetVars['isSubmitted'];
+    }
+    if($allGetVars['kategoriProdukId']){
+    	$url .= "&kategoriProdukId=".$allGetVars['kategoriProdukId'];
+    }
+    if($allGetVars['keyword']){
+    	$url .= "&keyword=".$allGetVars['keyword'];
+    }
+    if($allGetVars['penyediaId']){
+    	$url .= "&penyediaId=".$penyediaId;
+    }
+    if($allGetVars['manufakturId']){
+    	$url .= "&manufakturId=".$allGetVars['manufakturId'];
+    }
+    if($allGetVars['orderBy']){
+    	$url .= "&orderBy=".$allGetVars['orderBy'];
+    }
+    if($allGetVars['list']){
+    	$url .= "&list=".$allGetVars['list'];
+    }
+
+    // echo "id:".$args['id'];
+    if($args['id']>1){
+    	$fileName .= "_".$args['id'];
+    	$url .= "&page=".$args['id'];
+	}
+    // echo $url;
+    $fileName .= ".html";
+    // echo "<br>".$fileName;
+    $currUri = $request->getUri();
+    // echo "uri:".$uri;
+
+    if(!file_exists($fileName)){
+
+	    $ch = curl_init();
+	    curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1000);
+		$data = curl_exec($ch);
+		curl_close($ch);
+
+	    @file_put_contents($fileName, $data);
+	    // $data = file_get_contents($fileName);
+	} else {
+
+		$data = @file_get_contents($fileName);
+	}
+
+	$totpage = 0;
+
+    //now parsing it into html
+	$html = str_get_html($data);
+	if($html){
+		// echo $html->find("div.pageTitleWrap",0)->plaintext;
+		$totHal = $html->find("div.contentNaviTop .control",0)->plaintext;
+		preg_match_all('!\d+!', $totHal, $matches);
+		$totpage = ($matches[0][0]);
+		// echo "Total Halaman: " . trim($matches[0][0])."<br>";
+
+	}
+
 	$page = isset($args['id']) ? $args['id'] : 1;
 	$limit = 10;
-	$page = ($page - 1) * $limit;
+	$offset = ($page - 1) * $limit;
 
-	$sth = $this->db->prepare("select * from ecatalog where penyedia='Bhinneka.com' LIMIT ".$limit." OFFSET ".$page);
+	if($allGetVars['penyediaId']){
+		$filter = "where penyedia='".$allGetVars['penyediaId']."'";
+	}
+
+	$sth = $this->db->prepare("select * from ecatalog ".$filter." LIMIT ".$limit." OFFSET ".$offset);
     $sth->execute();
     $ecatalog = $sth->fetchAll();
+
+    $sth2 = $this->db->prepare("select distinct(penyedia), penyediaUrl from ecatalog order by penyedia asc");
+    $sth2->execute();
+    $penyedia = $sth2->fetchAll();
+
+    $currPage = explode("/", $currUri);
+    $idPage = end($currPage);
+	// echo "<br>currPage:".$idPage;
+    $idPage = explode("?", $idPage);
+    // echo "<br>currPage:".$idPage[0];
+
+    $prevPage = "";
+    if($idPage[0]>1){
+    	$prevPage = str_replace("/".$idPage[0]."?", "/".($idPage[0]-1)."?", $currUri);
+    }
+    $nextPage = str_replace("/".$idPage[0]."?", "/".($idPage[0]+1)."?", $currUri);
     
-    return $this->view->render($response, 'lkpp.php', ['ecatalog' => $ecatalog]);
+    return $this->view->render($response, 'lkpp.php', [
+    	'ecatalog' => $ecatalog,
+    	'penyedia' => $penyedia,
+    	'page' => $page,
+    	'totpage' => $totpage,
+    	'params' => $allGetVars,
+    	'prevPage' => $prevPage,
+    	'nextPage' => $nextPage,
+    	// 'currUri' => $currUri
+    ]);
 
 });
 
@@ -123,9 +236,10 @@ $app->get('/test', function ($request, $response, $args) {
 		    curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1000);
+			curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
 			$data = curl_exec($ch);
 			curl_close($ch);
-		    @file_put_contents($fileName, $data, FILE_APPEND);
+		    @file_put_contents($fileName, $data);
 		}
 		sleep(5);
 	}
@@ -144,6 +258,7 @@ $app->get('/lkpp/product[/{id}]', function ($request, $response, $args) {
 	    curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1000);
+		curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
 		$data = curl_exec($ch);
 		curl_close($ch);
 
@@ -302,24 +417,25 @@ $app->get('/lkpp/product[/{id}]', function ($request, $response, $args) {
     // return $this->response->withJson($newrowData);
 });
 
-$app->get('/lkpp[/{id}]', function ($request, $response, $args) {
+$app->get('/lkpp[/{penyediaId}/{id}]', function ($request, $response, $args) {
 
     // header("Content-type: application/vnd-ms-excel");
  	// header("Content-Disposition: attachment; filename=Ayooklik.xls");
-    
+    // return $this->response->withJson($args); die();
+
     /*
      * https://e-katalog.lkpp.go.id/backend/katalog/list_produk/77
      */
-    // $dirName = "cache";
-    $fileName = "list_produk_77_203186.html";
+    $cacheDir = realpath(dirname(__FILE__)) . "/cache/";
+    $fileName = $cacheDir . "list_produk_77_".$args['penyediaId'].".html";
     // echo $fileName;
-    $url = "https://e-katalog.lkpp.go.id/backend/katalog/list_produk/77/?isSubmitted=1&kategoriProdukId=&keyword=&penyediaId=203186&manufakturId=all&orderBy=hargaDesc&list=100";
+    $url = "https://e-katalog.lkpp.go.id/backend/katalog/list_produk/77/?isSubmitted=1&kategoriProdukId=&keyword=&penyediaId=".$args['penyediaId']."&manufakturId=all&orderBy=hargaDesc&list=100";
 
     if(isset($args['id'])>1){
-    	$fileName = "list_produk_77_203186_".$args['id'].".html";
+    	$fileName = "list_produk_77_".$args['penyediaId']."_".$args['id'].".html";
     	$url .= "&page=".$args['id'];
 	}
-    // echo $url;
+    // echo $url; die();
 
     if(!file_exists($fileName)){
 
@@ -330,7 +446,7 @@ $app->get('/lkpp[/{id}]', function ($request, $response, $args) {
 		$data = curl_exec($ch);
 		curl_close($ch);
 
-	    @file_put_contents($fileName, $data, FILE_APPEND);
+	    @file_put_contents($fileName, $data);
 	    // $data = file_get_contents($fileName);
 	} else {
 
@@ -397,7 +513,8 @@ $app->get('/lkpp[/{id}]', function ($request, $response, $args) {
 
 		}
 	}
-	// echo json_encode($listproduct);
+	// echo json_encode($listproduct);	
+    return $this->response->withJson($listproduct); die();
 
 	$page = isset($args['id']) ? $args['id'] : 1;
 	$limit = 10;
@@ -441,12 +558,13 @@ $app->get('/lkpp[/{id}]', function ($request, $response, $args) {
         $produkId = explode("/",$key['lihatProduk']);
         $produkId = end($produkId);
 
-        $ch = curl_init();
+        /*$ch = curl_init();
 	    curl_setopt($ch, CURLOPT_URL, "http://localhost/lkppDemo/lkpp/product/".$produkId);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1000);
+		curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
 		$data = curl_exec($ch);
-		curl_close($ch);
+		curl_close($ch);*/
 
         echo "<tr>
             <td>".$key['infoProduk']."</td>
